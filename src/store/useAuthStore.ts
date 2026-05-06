@@ -1,18 +1,36 @@
 import { create } from "zustand";
 
-const readUser = () => {
+export interface AuthUser {
+  id?: string;
+  _id?: string;
+  name: string;
+  email: string;
+  avatar?: string;
+}
+
+interface AuthState {
+  user: AuthUser | null;
+  token: string | null;
+  hydrated: boolean;
+  hydrate: () => void;
+  setAuth: (user: AuthUser, token: string) => void;
+  setUser: (user: AuthUser | null) => void;
+  logout: () => void;
+}
+
+const readUser = (): AuthUser | null => {
   if (typeof window === "undefined") return null;
   try {
     const raw = localStorage.getItem("arb_user");
-    return raw ? JSON.parse(raw) : null;
+    return raw ? (JSON.parse(raw) as AuthUser) : null;
   } catch {
     return null;
   }
 };
-const readToken = () =>
+const readToken = (): string | null =>
   typeof window === "undefined" ? null : localStorage.getItem("arb_token");
 
-export const useAuthStore = create((set) => ({
+export const useAuthStore = create<AuthState>((set) => ({
   user: readUser(),
   token: readToken(),
   hydrated: false,
