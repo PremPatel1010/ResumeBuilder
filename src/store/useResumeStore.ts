@@ -99,7 +99,7 @@ export const useResumeStore = create<ResumeState>((set, get) => ({
   setResume: (resume) => set({ resume }),
   reset: () => set({ resume: emptyResume() }),
   update: (path, value) => {
-    const resume = structuredClone(get().resume) as Record<string, unknown>;
+    const resume = structuredClone(get().resume) as unknown as Record<string, unknown>;
     const keys = path.split(".");
     let cur: Record<string, unknown> = resume;
     for (let i = 0; i < keys.length - 1; i++) {
