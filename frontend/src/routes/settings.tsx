@@ -6,6 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import { useThemeStore } from "@/store/useThemeStore";
 import { useAuthStore } from "@/store/useAuthStore";
 import { toast } from "sonner";
+import { authService } from "@/services/authService";
 
 export const Route = createFileRoute("/settings")({
   head: () => ({ meta: [{ title: "Settings — Resu.ai" }] }),
@@ -62,7 +63,24 @@ function SettingsInner() {
           >
             <LogOut className="h-4 w-4" /> Sign out
           </Button>
-          <Button variant="destructive" className="gap-2" onClick={() => toast.error("Connect your backend to enable account deletion")}>
+          <Button
+            variant="destructive"
+            className="gap-2"
+            onClick={async () => {
+              if (!confirm("Permanently delete your account and all saved resumes? This cannot be undone.")) return;
+              try {
+                await authService.deleteAccount();
+                logout();
+                toast.success("Account deleted");
+                navigate({ to: "/login" });
+              } catch (err: unknown) {
+                const message =
+                  (err as { response?: { data?: { message?: string } }; message?: string })?.response
+                    ?.data?.message ?? (err as Error)?.message ?? "Could not delete account";
+                toast.error(message);
+              }
+            }}
+          >
             <Trash2 className="h-4 w-4" /> Delete account
           </Button>
         </div>

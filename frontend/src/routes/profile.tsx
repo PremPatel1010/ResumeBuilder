@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuthStore } from "@/store/useAuthStore";
+import { authService } from "@/services/authService";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({ meta: [{ title: "Profile — Resu.ai" }] }),
@@ -37,10 +38,17 @@ function ProfileInner() {
   const onSubmit = async (data: ProfileForm) => {
     setLoading(true);
     try {
-      // Wire to PUT /api/auth/me when backend is ready
-      await new Promise((r) => setTimeout(r, 500));
-      if (user) setUser({ ...user, ...data });
+      const updated = await authService.updateProfile({
+        name: data.name.trim(),
+        email: data.email.trim(),
+      });
+      setUser(updated);
       toast.success("Profile updated");
+    } catch (err: unknown) {
+      const message =
+        (err as { response?: { data?: { message?: string } }; message?: string })?.response?.data
+          ?.message ?? (err as Error)?.message ?? "Could not update profile";
+      toast.error(message);
     } finally {
       setLoading(false);
     }
