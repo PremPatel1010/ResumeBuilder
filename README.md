@@ -213,8 +213,8 @@ If you have any questions or encounter issues, please:
 
 ## 👥 Authors
 
-- Your Name - *Initial work*
+-  Prem Patel
 
 ---
 
-**Made with ❤️ for job seekers everywhere**
+
