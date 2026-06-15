@@ -1,6 +1,6 @@
-# Resume Architect
+# ResumeBuilder
 
-A full-stack web application for building, customizing, and exporting professional resumes. Resume Architect combines an intuitive frontend with a powerful backend to help users create beautiful, ATS-friendly resumes.
+A full-stack web application for building, customizing, and exporting professional resumes. ResumeBuilder combines an intuitive frontend with a powerful backend to help users create beautiful, ATS-friendly resumes.
 
 ## 🌟 Features
 
@@ -40,7 +40,7 @@ A full-stack web application for building, customizing, and exporting profession
 ## 📁 Project Structure
 
 ```
-resume-architect/
+resumebuilder/
 ├── backend/                    # Express API server
 │   ├── src/
 │   │   ├── app.js             # Express app configuration
@@ -78,8 +78,8 @@ resume-architect/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/resume-architect.git
-   cd resume-architect
+   git clone https://github.com/yourusername/resumebuilder.git
+   cd resumebuilder
    ```
 
 2. **Backend Setup**
@@ -91,7 +91,7 @@ resume-architect/
    Create a `.env` file in the backend directory:
    ```env
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/resume-architect
+   MONGODB_URI=mongodb://localhost:27017/resumebuilder
    JWT_SECRET=your_jwt_secret_key_here
    JWT_EXPIRE=7d
    NODE_ENV=development
@@ -198,7 +198,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🙋 Support
 
 If you have any questions or encounter issues, please:
-- Check the [Issues](https://github.com/yourusername/resume-architect/issues) page
+- Check the [Issues](https://github.com/yourusername/resumebuilder/issues) page
 - Create a new issue with a detailed description
 - Contact the development team
 
