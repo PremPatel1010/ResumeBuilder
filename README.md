@@ -213,7 +213,7 @@ If you have any questions or encounter issues, please:
 
 ## 👥 Authors
 
-- Your Name - *Prem Patel*
+-  Prem Patel
 
 ---
 
